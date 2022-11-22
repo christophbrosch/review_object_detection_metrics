@@ -1,9 +1,9 @@
 import os
 
-import src.utils.converter as converter
-import src.utils.general_utils as general_utils
-import src.utils.validations as validations
-from src.utils.enumerators import BBFormat, BBType, CoordinatesType
+import object_detection_metrics.utils.converter as converter
+import object_detection_metrics.utils.general_utils as general_utils
+import object_detection_metrics.utils.validations as validations
+from object_detection_metrics.utils.enumerators import BBFormat, BBType, CoordinatesType
 
 
 def test_converters_gts():
@@ -113,7 +113,7 @@ def test_converters_dets():
 
 
 def test_toy_example_dets():
-    dir_annots_dets = 'toyexample/dets_classid_rel_xcycwh'
+    dir_annots_dets = 'example/dets_classid_rel_xcycwh'
 
     yolo_files = general_utils.get_files_recursively(dir_annots_dets)
     assert len(yolo_files) > 0
@@ -122,11 +122,11 @@ def test_toy_example_dets():
 
 
 def test_toy_example_dets_compatibility():
-    # Checks if all different formats in the toyexample represent the same coordinates
-    dir_img_dir = 'toyexample/images'
-    filepath_classes_det = 'toyexample/voc.names'
+    # Checks if all different formats in the example represent the same coordinates
+    dir_img_dir = 'example/images'
+    filepath_classes_det = 'example/voc.names'
 
-    dir_dets_classid_abs_xywh = 'toyexample/dets_classid_abs_xywh'
+    dir_dets_classid_abs_xywh = 'example/dets_classid_abs_xywh'
     dets_classid_abs_xywh = converter.text2bb(dir_dets_classid_abs_xywh,
                                               bb_type=BBType.DETECTED,
                                               bb_format=BBFormat.XYWH,
@@ -135,7 +135,7 @@ def test_toy_example_dets_compatibility():
                                                                   filepath_classes_det)
     dets_classid_abs_xywh.sort(key=lambda x: str(x), reverse=True)
 
-    dir_dets_classid_abs_xyx2y2 = 'toyexample/dets_classid_abs_xyx2y2'
+    dir_dets_classid_abs_xyx2y2 = 'example/dets_classid_abs_xyx2y2'
     dets_classid_abs_xyx2y2 = converter.text2bb(dir_dets_classid_abs_xyx2y2,
                                                 bb_type=BBType.DETECTED,
                                                 bb_format=BBFormat.XYX2Y2,
@@ -144,7 +144,7 @@ def test_toy_example_dets_compatibility():
                                                                     filepath_classes_det)
     dets_classid_abs_xyx2y2.sort(key=lambda x: str(x), reverse=True)
 
-    dir_dets_classid_rel_xcycwh = 'toyexample/dets_classid_rel_xcycwh'
+    dir_dets_classid_rel_xcycwh = 'example/dets_classid_rel_xcycwh'
     dets_classid_rel_xcycwh = converter.text2bb(dir_dets_classid_rel_xcycwh,
                                                 bb_type=BBType.DETECTED,
                                                 bb_format=BBFormat.YOLO,
@@ -154,21 +154,21 @@ def test_toy_example_dets_compatibility():
                                                                     filepath_classes_det)
     dets_classid_rel_xcycwh.sort(key=lambda x: str(x), reverse=True)
 
-    dir_dets_classname_abs_xywh = 'toyexample/dets_classname_abs_xywh'
+    dir_dets_classname_abs_xywh = 'example/dets_classname_abs_xywh'
     dets_classname_abs_xywh = converter.text2bb(dir_dets_classname_abs_xywh,
                                                 bb_type=BBType.DETECTED,
                                                 bb_format=BBFormat.XYWH,
                                                 type_coordinates=CoordinatesType.ABSOLUTE)
     dets_classname_abs_xywh.sort(key=lambda x: str(x), reverse=True)
 
-    dir_dets_classname_abs_xyx2y2 = 'toyexample/dets_classname_abs_xyx2y2'
+    dir_dets_classname_abs_xyx2y2 = 'example/dets_classname_abs_xyx2y2'
     dets_classname_abs_xyx2y2 = converter.text2bb(dir_dets_classname_abs_xyx2y2,
                                                   bb_type=BBType.DETECTED,
                                                   bb_format=BBFormat.XYX2Y2,
                                                   type_coordinates=CoordinatesType.ABSOLUTE)
     dets_classname_abs_xyx2y2.sort(key=lambda x: str(x), reverse=True)
 
-    dir_dets_classname_rel_xcycwh = 'toyexample/dets_classname_rel_xcycwh'
+    dir_dets_classname_rel_xcycwh = 'example/dets_classname_rel_xcycwh'
     dets_classname_rel_xcycwh = converter.text2bb(dir_dets_classname_rel_xcycwh,
                                                   bb_type=BBType.DETECTED,
                                                   bb_format=BBFormat.YOLO,
@@ -176,7 +176,7 @@ def test_toy_example_dets_compatibility():
                                                   img_dir=dir_img_dir)
     dets_classname_rel_xcycwh.sort(key=lambda x: str(x), reverse=True)
 
-    dir_dets_coco_format = 'toyexample/dets_coco_format'
+    dir_dets_coco_format = 'example/dets_coco_format'
     dets_coco_format = converter.coco2bb(dir_dets_coco_format, bb_type=BBType.DETECTED)
     dets_coco_format.sort(key=lambda x: str(x), reverse=True)
 
@@ -193,7 +193,7 @@ def test_toy_example_gts():
     ############################################################################
 
     # PASCAL VOC
-    dir_annots_gts_pascal = 'toyexample/gts_vocpascal_format'
+    dir_annots_gts_pascal = 'example/gts_vocpascal_format'
     files = general_utils.get_files_recursively(dir_annots_gts_pascal)
     assert len(files) > 0
     for f in files:
@@ -201,7 +201,7 @@ def test_toy_example_gts():
             f), 'File {f} does not follow the expected format (PASCAL VOC)'
 
     # COCO
-    dir_annots_gts_coco = 'toyexample/gts_coco_format'
+    dir_annots_gts_coco = 'example/gts_coco_format'
     files = general_utils.get_files_recursively(dir_annots_gts_coco)
     assert len(files) > 0
     for f in files:

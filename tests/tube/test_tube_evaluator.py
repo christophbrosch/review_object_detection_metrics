@@ -1,6 +1,6 @@
 import os
 
-from src.evaluators.tube_evaluator import TubeEvaluator
+from object_detection_metrics.evaluators.tube_evaluator import TubeEvaluator
 
 
 # TODO: More tests!!!

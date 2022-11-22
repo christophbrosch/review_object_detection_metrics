@@ -1,9 +1,9 @@
 import json
 from math import isclose
 
-from src.bounding_box import BBFormat, BBType, BoundingBox
-from src.evaluators.coco_evaluator import get_coco_summary
-from src.utils.converter import coco2bb
+from object_detection_metrics.bounding_box import BBFormat, BBType, BoundingBox
+from object_detection_metrics.evaluators.coco_evaluator import get_coco_summary
+from object_detection_metrics.utils.converter import coco2bb
 
 # Load coco samples
 gts = coco2bb('tests/test_coco_eval/gts', BBType.GROUND_TRUTH)
