@@ -21,5 +21,3 @@ def test_case_2():
     dets = converter.coco2bb(dets_dir, BBType.DETECTED)
     results_pascal_voc = get_pascalvoc_metrics(gts, dets)
     results_coco = get_coco_summary(gts, dets)
-
-    print(results_coco)
